@@ -17,7 +17,7 @@ public class OuttakeSubClass {
     private Servo outtakeArmR, outtakeArmL, outtakeClaw;
     private DcMotor vertSlideL, vertSlideR;
     private final double outtakeArmOut = .93, outtakeArmIn = .05;
-    private final double outtakeClawOpen = 1, outtakeClawClose = 0;
+    private final double outtakeClawOpen = 1, outtakeClawClose = .4;
     private TouchSensor touch;
 
     public OuttakeSubClass(HardwareMap hardwareMap) {
@@ -31,8 +31,12 @@ public class OuttakeSubClass {
         vertSlideL.setDirection(DcMotor.Direction.FORWARD);
         vertSlideR.setDirection(DcMotor.Direction.FORWARD);
 
+
         vertSlideL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         vertSlideL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        vertSlideR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        vertSlideR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
 
         touch = hardwareMap.get(TouchSensor.class, "touch");
 
@@ -60,18 +64,29 @@ public class OuttakeSubClass {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
             outtakeClaw.setPosition(outtakeClawClose);
-            outtakeArmL.setPosition(outtakeArmOut - .6);
-            outtakeArmR.setPosition(outtakeArmOut - .6);
+            outtakeArmL.setPosition(outtakeArmOut - .06);
+            outtakeArmR.setPosition(outtakeArmOut - .06);
 
-            vertSlideL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            vertSlideR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            vertSlideL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            vertSlideR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+
             //I'm gonna need to check the correct direction
-            vertSlideL.setTargetPosition(-400);
-            vertSlideR.setTargetPosition(-400);
+            vertSlideL.setTargetPosition(-1118);
+            vertSlideR.setTargetPosition(-1600);
+            //vertSlideR.setTargetPosition(-400);
+            vertSlideL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            vertSlideR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-
+            /*while(vertSlideL.isBusy()){
+                vertSlideL.setPower(.8);
+                vertSlideL.getCurrentPosition();
+                if(vertSlideL.getCurrentPosition() < vertSlideL.getTargetPosition()){
+                    vertSlideL.setPower(0);
+                    return false;
+                }
+            }*/
+            vertSlideL.setPower(.7);
+            vertSlideR.setPower(.7);
+            //vertSlideL.setPower(0);
             return false;
         }
     }
@@ -82,13 +97,14 @@ public class OuttakeSubClass {
             outtakeClaw.setPosition(outtakeClawClose);
             outtakeArmL.setPosition(outtakeArmOut - .06);
             outtakeArmR.setPosition(outtakeArmOut - .06);
-            vertSlideL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            vertSlideR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            vertSlideL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            vertSlideR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             //I'm gonna need to check the correct direction, basically reverse of prepareSpecimen
-            vertSlideL.setTargetPosition(-200);
-            vertSlideR.setTargetPosition(-200);
+            vertSlideL.setTargetPosition(-300);
+            vertSlideR.setTargetPosition(-480);
+
+            vertSlideL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            vertSlideR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            vertSlideL.setPower(.7);
+            vertSlideR.setPower(.7);
             return false;
         }
     }
@@ -101,8 +117,8 @@ public class OuttakeSubClass {
             outtakeArmR.setPosition(outtakeArmOut);
 
             while (!touch.isPressed()) {
-                vertSlideR.setPower(0.4);
-                vertSlideL.setPower(0.4);
+                vertSlideR.setPower(0.7);
+                vertSlideL.setPower(0.7);
             }
             vertSlideR.setPower(0);
             vertSlideL.setPower(0);

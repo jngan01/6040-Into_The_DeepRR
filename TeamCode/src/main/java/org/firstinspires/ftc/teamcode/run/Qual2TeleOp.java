@@ -26,7 +26,7 @@ public class Qual2TeleOp extends LinearOpMode {
     private final double intakeArmUp = .6, intakeArmDown = 0;
 
     // Outtake positions
-    private final double outtakeArmOut = .93, outtakeArmIn = .05;
+    private final double outtakeArmOut = .9, outtakeArmIn = .05;
     private final double outtakeClawOpen = 1, outtakeClawClose = .79;
 
     ElapsedTime timer = new ElapsedTime();
@@ -67,6 +67,8 @@ public class Qual2TeleOp extends LinearOpMode {
 
         vertSlideL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         vertSlideL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        vertSlideR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        vertSlideR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
 
 
@@ -151,7 +153,7 @@ public class Qual2TeleOp extends LinearOpMode {
                 outtakeArmR.setPosition(outtakeArmOut);
                 outtakeArmL.setPosition(outtakeArmOut);
             }
-            if(gamepad1.right_bumper){
+            if(gamepad1.x){
                 outtakeArmR.setPosition(outtakeArmOut-.32);
                 outtakeArmL.setPosition(outtakeArmOut-.32);
             }
@@ -172,7 +174,9 @@ public class Qual2TeleOp extends LinearOpMode {
                 }
                 stopVerticalSlides();
             }
-            telemetry.addData("Lift Pos", -vertSlideL.getCurrentPosition());
+            telemetry.addData("Lift Pos Left", -vertSlideL.getCurrentPosition());
+            telemetry.addData("Lift Pos Right", -vertSlideR.getCurrentPosition());
+
             telemetry.update();
         }
 

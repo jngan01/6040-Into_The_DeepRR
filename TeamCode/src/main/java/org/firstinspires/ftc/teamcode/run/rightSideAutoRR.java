@@ -30,7 +30,6 @@ public class rightSideAutoRR extends LinearOpMode {
 
                         //Below is the good code
                         .strafeTo(new Vector2d(4, -33))
-                        .afterTime(0, outtake.closeOuttakeClaw())
                         .afterTime(0, outtake.prepareSpecimen())
                         .afterTime(2, outtake.placeSpecimen())
                         .afterTime(.75, outtake.resetOuttake())

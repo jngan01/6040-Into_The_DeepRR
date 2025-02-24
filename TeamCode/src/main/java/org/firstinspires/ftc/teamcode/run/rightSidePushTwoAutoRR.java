@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.SparkFunOTOSDrive;
 import org.firstinspires.ftc.teamcode.run.rrSubClass.OuttakeSubClass;
 
 
-@Autonomous(name = "rightSideAutoRR", group = "Autonomous")
+@Autonomous(name = "rightSidePushTwoAutoRR", group = "Autonomous")
 public class rightSidePushTwoAutoRR extends LinearOpMode {
 
     @Override
@@ -27,13 +27,12 @@ public class rightSidePushTwoAutoRR extends LinearOpMode {
         Actions.runBlocking(
                 drive.actionBuilder(beginPose)
 
-
-                        .strafeTo(new Vector2d(4, -33))
                         .afterTime(0, outtake.closeOuttakeClaw())
                         .afterTime(0, outtake.prepareSpecimen())
-                        //.waitSeconds(.5)
-                        .afterTime(2, outtake.placeSpecimen())
-                        .afterTime(.75, outtake.resetOuttake())
+                        .strafeTo(new Vector2d(4, -29.5))
+                        .afterTime(0, outtake.placeSpecimen())
+                        .afterTime(1, outtake.resetOuttake())
+                        .waitSeconds(.75)
                         .strafeTo(new Vector2d(34, -36))
 
 
@@ -41,10 +40,10 @@ public class rightSidePushTwoAutoRR extends LinearOpMode {
 
                         //Pushing samples
                         .strafeTo(new Vector2d(34, -15))
-                        .strafeTo(new Vector2d(49, -15))
+                        .strafeTo(new Vector2d(49, -13))
                         .strafeTo(new Vector2d(49, -58))
-                        .strafeTo(new Vector2d(49, -15))
-                        .strafeTo(new Vector2d(58, -15))
+                        .strafeTo(new Vector2d(49, -13))
+                        .strafeTo(new Vector2d(58, -13))
                         .strafeTo(new Vector2d(58, -58))
 
                         .strafeTo(new Vector2d(47.5, -52))

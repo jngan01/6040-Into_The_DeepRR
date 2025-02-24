@@ -39,20 +39,20 @@ public class RoadRunnerTesting extends LinearOpMode {
 //                        .strafeTo(new Vector2d(0, 0))
 //                        .waitSeconds(.5)
 
-                        //.afterTime(0, outtake.resetOuttake())
-                        //.afterTime(1, outtake.prepareSpecimen())
-                        //.afterTime(1, outtake.placeSpecimen())
+                        .afterTime(0, outtake.resetOuttake())
+                        .afterTime(2, outtake.prepareSpecimen())
+                        .afterTime(4, outtake.placeSpecimen())
 
                         //Intake pick up test
 
-                        .afterTime(1, intake.IntakeHover())
+                        /*.afterTime(1, intake.IntakeHover())
                         .strafeTo(new Vector2d(0, 5))
                         .afterTime(2, intake.IntakeLower())
                         .strafeTo(new Vector2d(0, 0))
                         .afterTime(3, intake.IntakeClawClose())
                         .strafeTo(new Vector2d(0, 5))
                         .afterTime(2, intake.IntakeUp())
-                        .strafeTo(new Vector2d(0, 0))
+                        .strafeTo(new Vector2d(0, 0)) */
 
                         //Intake-Outtake transition
                         /*
